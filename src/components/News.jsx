@@ -24,7 +24,7 @@ const News = (props)=> {
     console.log(data);
     let parsedata = await data.json();
         props.setProgress(70);
-        setarticles(parsedata.articles)
+        setarticles(parsedata.articles||[])
         settotalResults(parsedata.totalResults)
         setloading(false)
 
@@ -52,7 +52,7 @@ const News = (props)=> {
     console.log(data);
     let parsedata = await data.json();
     console.log(parsedata);
-    setarticles(articles.concat(parsedata.articles))
+    setarticles(articles.concat(parsedata.articles||[]))
     settotalResults(parsedata.totalResults)
   }
  
@@ -60,9 +60,9 @@ const News = (props)=> {
       <>
         <h1 className="text-center" style={{margin:"35px 0px", marginTop:"90px"}}>News - Top  {capitalizeFirstLetter(props.category)}  Headlines </h1>
          <InfiniteScroll
-    dataLength={articles.length}
+    dataLength={articles?.length||0}
     next={fetchMoreData}
-    hasMore={articles.length!==totalResults}
+    hasMore={articles.length!==totalResults&&articles.length!=undefined}
     loader={<Spinner/>}>
       <div className="container">
         <div className="row">
