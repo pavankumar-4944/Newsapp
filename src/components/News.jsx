@@ -16,8 +16,12 @@ const News = (props)=> {
  
   const updateNews = async ()=>{
     props.setProgress(10);
+    // const apiKey = import.meta.env.VITE_NEWSAPI_KEY;
  const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cf4922edd4684ff58de0d7f8da132bb9&page=1&pageSize=${props.pageSize}`;
+//  `https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=us&max=10&apikey=b548dd520cb6584e1505fffd3e18f356&page=1&pageSize=${props.pageSize}`;
+//  `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cf4922edd4684ff58de0d7f8da132bb9&page=1&pageSize=${props.pageSize}`;
   
+ 
     setloading(true);
     let data = await fetch(url);
         props.setProgress(30);         
@@ -42,11 +46,14 @@ const News = (props)=> {
   updateNews();
   };
   const onNext = async () => {
-    setpage(page+1);                                                          cxxxxxx
+    setpage(page+1);                                                     
     updateNews();
   };
   const fetchMoreData= async ()=>{ 
+    // const apiKey = import.meta.env.VITE_NEWSAPI_KEY;
      const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cf4922edd4684ff58de0d7f8da132bb9&page=${page+1}&pageSize=${props.pageSize}`;
+      // `https://gnews.io/api/v4/top-headlines?category=${props.category}&lang=en&country=us&max=10&apikey=b548dd520cb6584e1505fffd3e18f356&page=${page+1}&pageSize=${props.pageSize}`;
+    //  `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cf4922edd4684ff58de0d7f8da132bb9&page=${page+1}&pageSize=${props.pageSize}`;
      setpage(page+1);
     let data = await fetch(url);
     console.log(data);
